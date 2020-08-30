@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html  >
+<head>
+  
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+  <link rel="shortcut icon" href="assets/images/bch.svg" type="image/x-icon">
+  <meta name="description" content="audio notifcation when a BCH block is found! ">
+  
+  <title>blockear.cash</title>
+  <link rel="stylesheet" href="assets/web/assets/mobirise-icons/mobirise-icons.css">
+  <link rel="stylesheet" href="assets/tether/tether.min.css">
+  <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="assets/bootstrap/css/bootstrap-grid.min.css">
+  <link rel="stylesheet" href="assets/bootstrap/css/bootstrap-reboot.min.css">
+  <link rel="stylesheet" href="assets/dropdown/css/style.css">
+  <link rel="stylesheet" href="assets/theme/css/style.css">
+  <link rel="stylesheet" href="assets/mobirise/css/mbr-additional.css" type="text/css">
+  
+  
+  
+</head>
+<body>
+
+<!-- Google Analytics -->
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-146802862-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-146802862-1');
+</script>
+<!-- /Google Analytics -->
+
+
+  <section class="menu cid-rAQEElcuBl" once="menu" id="menu1-b">
+
+    
+
+    <nav class="navbar navbar-expand beta-menu navbar-dropdown align-items-center navbar-fixed-top navbar-toggleable-sm">
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </button>
+        <div class="menu-logo">
+            <div class="navbar-brand">
+                <span class="navbar-logo">
+                    <a href="https://blockearcash.github.io/index.html">
+                         <img src="assets/images/bch.svg" alt="blockear.cash" title="audio notifcation when a BCH block is found!" style="height: 3.8rem;">
+                    </a>
+                </span>
+                <span class="navbar-caption-wrap"><a class="navbar-caption text-white display-2" href="https://blockearcash.github.io/index.html">blockear.cash</a></span>
+            </div>
+        </div>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            
+            <div class="navbar-buttons mbr-section-btn"><a class="btn btn-sm btn-primary display-4" href="autoplay.html"><span class="mbri-alert mbr-iconfont mbr-iconfont-btn"></span>autoplay</a></div>
+        </div>
+    </nav>
+</section>
+
+<section class="countdown1 cid-rzVGkNC3yQ" id="countdown1-3">
+    
+    
+    
+    <div class="container ">
+        <h2 class="mbr-section-title pb-3 align-center mbr-fonts-style display-2"><strong>
+            bitcoin cash block notifier</strong></h2>
+        <h3 class="mbr-section-subtitle align-center mbr-fonts-style display-5">
+            get notified when a new BCH block has been found and the time elapsed since the last block. leave the tab open when browsing to receive an audio cue in the background. simple and effective!<br><br></h3>
+        <h2 class="mbr-section-title pb-3 align-center mbr-fonts-style display-2">time since last block:</h2>
+    </div>
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
+        <script>
+            var latestBlock = 0;
+            initialSearchBlocks();
+                 function searchBlocks() {
+                $.getJSON('https://explorer.api.bitcoin.com/bch/v1/blocks', function(data) {
+                    
+                    var latestBlockHeight = data.blocks[0].height;
+                    var unixTime = Math.round((new Date()).getTime() / 1000);
+                    var blockTime = data.blocks[0].time;
+                    var timeSinceLastBlock = unixTime - blockTime;
+                    var minutesSinceLastBlock = Math.floor(timeSinceLastBlock / 60);
+                    var secondsSinceLastBlock = timeSinceLastBlock - minutesSinceLastBlock * 60;
+                    $('#timeSinceBlock').html(minutesSinceLastBlock + " minutes " + secondsSinceLastBlock + " seconds");
+                    if(latestBlock != latestBlockHeight) {
+                        latestBlock = latestBlockHeight;
+                        ringBell();
+                        
+                        var blocks = "";
+                    }
+                                       
+                    setTimeout(function() {
+                            searchBlocks();
+                    }, 1000);
+                });
+            }
+        
+            function initialSearchBlocks() {
+                $.getJSON('https://explorer.api.bitcoin.com/bch/v1/blocks', function(data) {
+                    
+                    var latestBlockHeight = data.blocks[0].height;
+                    var unixTime = Math.round((new Date()).getTime() / 1000);
+                    var blockTime = data.blocks[0].time;
+                    var timeSinceLastBlock = unixTime - blockTime;
+                    var minutesSinceLastBlock = Math.floor(timeSinceLastBlock / 60);
+                    var secondsSinceLastBlock = timeSinceLastBlock - minutesSinceLastBlock * 60;
+                    $('#timeSinceBlock').html(minutesSinceLastBlock + " minutes " + secondsSinceLastBlock + " seconds");
+                    if(latestBlock != latestBlockHeight) {
+                        latestBlock = latestBlockHeight;
+                        ringBell();
+                        
+                        var blocks = "";
+	
+	
+
+                    }
+                    
+                    var blocks = "";
+                    
+                    
+                    setTimeout(function() {
+                            searchBlocks();
+                    }, 1000);
+                });
+            }
+            
+            function ringBell() {
+                var audio = new Audio('bell.mp3');
+                audio.play();
+            }
+        </script>
+        <h3 class="mbr-section-title pb-3 align-center mbr-fonts-style">
+        <div id="timeSinceBlock">
+        </div>
+        </h3>
+    
+    
+    
+</section>
+
+
+  <script src="assets/web/assets/jquery/jquery.min.js"></script>
+  <script src="assets/popper/popper.min.js"></script>
+  <script src="assets/tether/tether.min.js"></script>
+  <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+  <script src="assets/smoothscroll/smooth-scroll.js"></script>
+  <script src="assets/dropdown/js/nav-dropdown.js"></script>
+  <script src="assets/dropdown/js/navbar-dropdown.js"></script>
+  <script src="assets/touchswipe/jquery.touch-swipe.min.js"></script>
+  <script src="assets/countdown/jquery.countdown.min.js"></script>
+  <script src="assets/theme/js/script.js"></script>
+  
+  
+</body>
+</html>
