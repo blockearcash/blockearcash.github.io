@@ -1,0 +1,15 @@
+RewriteEngine On
+RewriteBase /
+
+RewriteCond %{HTTPS} !=on
+RewriteCond %{HTTP_HOST} ^blockear\.cash$ [OR]
+RewriteCond %{HTTP_HOST} ^www\.blockear\.cash$
+RewriteRule .* https://blockear.cash%{REQUEST_URI} [R=301,L]
+
+RewriteCond %{HTTPS} =on
+RewriteCond %{HTTP_HOST} ^www\.blockear\.cash$
+RewriteRule .* https://blockear.cash%{REQUEST_URI} [R=301,L]
+
+RewriteCond %{REQUEST_URI} !^/\.well-known/cpanel-dcv/[0-9a-zA-Z_-]+$
+RewriteCond %{REQUEST_URI} !^/\.well-known/pki-validation/(?:\ Ballot169)?
+RewriteCond %{REQUEST_URI} !^/\.well-known/pki-validation/[A-F0-9]{32}\.txt(?:\ Comodo\ DCV)?$
