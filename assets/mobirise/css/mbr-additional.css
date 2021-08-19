@@ -2,7 +2,9 @@
 
 
 
+.mobileHide
 
+{ display: none;}
 
 body {
   font-style: normal;
